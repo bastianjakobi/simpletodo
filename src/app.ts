@@ -9,11 +9,11 @@ function createList(name) {
     localStorage.setItem('name', name);
     localStorage.setItem('hasList', 'true');
     localStorage.setItem('list', JSON.stringify([]));
-    window.location.replace('/views/todo.html');
+    window.location.replace('/todo.html');
 }
 function deleteList() {
     localStorage.clear();
-    window.location.replace('/views/index.html');
+    window.location.replace('/index.html');
 }
 function createToDo(todo) {
     let list = JSON.parse(localStorage.getItem('list'));
