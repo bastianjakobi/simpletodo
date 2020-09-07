@@ -5,26 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>To-Do App</title>
+    <title>Your ToDo's</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="/style/style.css">
     <script>
-        if (localStorage.getItem('hasList') == 'true') {
-            window.location.replace('/views/todo.html');
+        if (localStorage.getItem('hasList') != 'true') {
+            window.location.replace('/views/index.html');
         }
     </script>
 </head>
 
 <body>
     <main class="d-flex flex-column justify-content-center align-items-center">
-        <h2 class="mb-5">Create your todo list:</h2>
-        <form class="text-left border border-light p-5 z-depth-2" id="signupform">
-            <input type="text" name="listname" id="listname" class="form-control mb-3" placeholder="Your name">
-            <button type="submit" class="btn btn-success">Create list</button>
+        <h1 id="welcomemessage"></h1>
+        <h4 class="mt-4">Add item:</h4>
+        <form id="createform" class="text-center mt-1">
+            <input type="text" name="todo" id="todo" class="form-control mb-2" placeholder="New item">
+            <button class="btn btn-success" type="submit">Add to list</button>
         </form>
+        <ul class="list-group mt-5 mb-5" id="todolist">
+
+        </ul>
+        <button class="btn btn-danger mt-3" id="del">Delete list</button>
     </main>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript"
@@ -33,7 +38,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-    <script src="../src/app.js"></script>
+    <script src="/src/app.js"></script>
 </body>
 
 </html>
