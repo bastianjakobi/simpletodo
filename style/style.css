@@ -1,0 +1,9 @@
+main{
+    min-height: 100vh;
+}
+#todolist{
+    min-width: 90%;
+}
+#createform{
+    min-width: 90%;
+}
