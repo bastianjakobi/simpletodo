@@ -1,7 +1,7 @@
 module.exports = {
-  "globDirectory": "simpleToDoApp/",
+  "globDirectory": "build/",
   "globPatterns": [
-    "**/*.{html,js,css}"
+    "**/*.{html,json,js,css}"
   ],
-  "swDest": "simpleToDoApp/src/sw.js"
+  "swDest": "build/sw.js"
 };

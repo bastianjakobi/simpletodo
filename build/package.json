@@ -1,0 +1,16 @@
+{
+  "name": "simpletodo",
+  "version": "1.0.0",
+  "description": "A simple todo app.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "bootstrap": "^4.5.2",
+    "mdbootstrap": "^4.19.1"
+  }
+}
