@@ -4,6 +4,10 @@ let listname: string = localStorage.getItem('name');
 let del: JQuery = $('#del');
 let createform: JQuery = $('#createform');
 let todolist = $('#todolist');
+let editmodal = $('#edittodomodal');
+let editInput = $('#editedToDo');
+let editId = $('#editId');
+let saveChanges = $('#saveChanges');
 
 function createList(name) {
     localStorage.setItem('name', name);
@@ -22,11 +26,35 @@ function createToDo(todo) {
     createform.trigger('reset');
     renderList();
 }
+function showEditModal(elem) {
+    editInput.val(elem.todo);
+    editId.val(elem.id);
+    editmodal.modal((show = true));
+}
 function editToDo(id) {
-    alert('Request to edit ' + id);
+    let list = JSON.parse(localStorage.getItem('list'));
+    let elem = list[list.findIndex((e) => e.id == id)];
+    showEditModal(elem);
+}
+function saveEdit(id, changedTodo) {
+    let list = JSON.parse(localStorage.getItem('list'));
+    let newElem = {
+        id: id,
+        todo: changedTodo,
+    };
+    let elem = list[list.findIndex((e) => e.id == id)];
+    list[list.indexOf(elem)] = newElem;
+    localStorage.setItem('list', JSON.stringify(list));
+    renderList();
 }
 function deleteToDo(id) {
-    alert('Request to delete ' + id);
+    let list = JSON.parse(localStorage.getItem('list'));
+    list.splice(
+        list.findIndex((e) => e.id == id),
+        1
+    );
+    localStorage.setItem('list', JSON.stringify(list));
+    renderList();
 }
 function renderList() {
     todolist.empty();
@@ -68,4 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         createToDo(payload);
     });
+    saveChanges.on('click', () => {
+        let id = editId.val();
+        let changedTodo = editInput.val();
+        saveEdit(id, changedTodo);
+    });
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+    }
 });
