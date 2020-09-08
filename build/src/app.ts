@@ -63,8 +63,8 @@ function renderList() {
             let html = $(`
                 <li class="list-group-item">
                     ${data.todo}<br>
-                    <button class="btn btn-sm btn-success" onclick="editToDo('${data.id}')"><i class="fas fa-pen"></i></button>
-                    <button class="btn btn-sm btn-danger" onclick="deleteToDo('${data.id}')"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-sm btn-success" onclick="editToDo('${data.id}')">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteToDo('${data.id}')">Delete</i></button>
                 </li>
             `);
             todolist.append(html);
