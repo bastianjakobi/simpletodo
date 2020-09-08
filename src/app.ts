@@ -101,7 +101,4 @@ document.addEventListener('DOMContentLoaded', () => {
         let changedTodo = editInput.val();
         saveEdit(id, changedTodo);
     });
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js');
-    }
 });

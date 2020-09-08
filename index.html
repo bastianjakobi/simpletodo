@@ -33,6 +33,15 @@
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
     <script src="/src/app.js"></script>
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/src/sw.js');
+            });
+        }
+    </script>
 </body>
 
 </html>

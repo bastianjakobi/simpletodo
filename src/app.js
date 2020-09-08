@@ -32,38 +32,23 @@ function showEditModal(elem) {
 }
 function editToDo(id) {
     var list = JSON.parse(localStorage.getItem('list'));
-    var elem =
-        list[
-            list.findIndex(function (e) {
-                return e.id == id;
-            })
-        ];
+    var elem = list[list.findIndex(function (e) { return e.id == id; })];
     showEditModal(elem);
 }
 function saveEdit(id, changedTodo) {
     var list = JSON.parse(localStorage.getItem('list'));
     var newElem = {
         id: id,
-        todo: changedTodo,
+        todo: changedTodo
     };
-    var elem =
-        list[
-            list.findIndex(function (e) {
-                return e.id == id;
-            })
-        ];
+    var elem = list[list.findIndex(function (e) { return e.id == id; })];
     list[list.indexOf(elem)] = newElem;
     localStorage.setItem('list', JSON.stringify(list));
     renderList();
 }
 function deleteToDo(id) {
     var list = JSON.parse(localStorage.getItem('list'));
-    list.splice(
-        list.findIndex(function (e) {
-            return e.id == id;
-        }),
-        1
-    );
+    list.splice(list.findIndex(function (e) { return e.id == id; }), 1);
     localStorage.setItem('list', JSON.stringify(list));
     renderList();
 }
@@ -71,15 +56,7 @@ function renderList() {
     todolist.empty();
     if (localStorage.getItem('list')) {
         JSON.parse(localStorage.getItem('list')).map(function (data) {
-            var html = $(
-                '\n                <li class="list-group-item">\n                    ' +
-                    data.todo +
-                    '<br>\n                    <button class="btn btn-sm btn-success" onclick="editToDo(\'' +
-                    data.id +
-                    '\')"><i class="fas fa-pen"></i></button>\n                    <button class="btn btn-sm btn-danger" onclick="deleteToDo(\'' +
-                    data.id +
-                    '\')"><i class="fas fa-trash"></i></button>\n                </li>\n            '
-            );
+            var html = $("\n                <li class=\"list-group-item\">\n                    " + data.todo + "<br>\n                    <button class=\"btn btn-sm btn-success\" onclick=\"editToDo('" + data.id + "')\"><i class=\"fas fa-pen\"></i></button>\n                    <button class=\"btn btn-sm btn-danger\" onclick=\"deleteToDo('" + data.id + "')\"><i class=\"fas fa-trash\"></i></button>\n                </li>\n            ");
             todolist.append(html);
         });
     }
@@ -101,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var todo = $('#todo').val().toString();
         var payload = {
             id: id,
-            todo: todo,
+            todo: todo
         };
         createToDo(payload);
     });
@@ -110,7 +87,4 @@ document.addEventListener('DOMContentLoaded', function () {
         var changedTodo = editInput.val();
         saveEdit(id, changedTodo);
     });
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js');
-    }
 });
