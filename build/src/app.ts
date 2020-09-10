@@ -56,15 +56,25 @@ function deleteToDo(id) {
     localStorage.setItem('list', JSON.stringify(list));
     renderList();
 }
+function check(e) {
+    let todoid = $(e.currentTarget).data('todoid');
+    $(e.currentTarget.parentNode.parentNode).fadeOut('slow');
+    setTimeout(() => {
+        deleteToDo(todoid);
+    }, 2000);
+}
 function renderList() {
     todolist.empty();
     if (localStorage.getItem('list')) {
         JSON.parse(localStorage.getItem('list')).map((data) => {
             let html = $(`
                 <li class="list-group-item">
-                    ${data.todo}<br>
-                    <button class="btn btn-sm btn-success" onclick="editToDo('${data.id}')">Edit</button>
-                    <button class="btn btn-sm btn-danger" onclick="deleteToDo('${data.id}')">Delete</i></button>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input done" id="${data.id}" data-todoid="${data.id}">
+                        <label class="custom-control-label pl-1" for="${data.id}"><h5 style="display: inline-block;"><strong>${data.todo}</strong></h5></label>
+                    </div>
+                    <button class="btn btn-success btn-sm" onclick="editToDo('${data.id}')"><i class="fas fa-pen"></i></button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteToDo('${data.id}')"><i class="fas fa-trash"></i></button>
                 </li>
             `);
             todolist.append(html);
@@ -101,4 +111,5 @@ document.addEventListener('DOMContentLoaded', () => {
         let changedTodo = editInput.val();
         saveEdit(id, changedTodo);
     });
+    todolist.on('click', '.done', check);
 });
